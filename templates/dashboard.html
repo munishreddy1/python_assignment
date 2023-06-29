@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Dashboard</h1>
-    <p>Temperature: {{ temperature }}&deg;C</p>
-    <p>Humidity: {{ humidity }}</p>
-</body>
+    <p id="temperature">Temperature: N/A</p>
+    <p id="humidity">Humidity: N/A</p>
+
+    <script>
+      function refreshData() {
+        fetch("/api/processed-data")
+          .then((response) => response.json())
+          .then((data) => {
+            const temperatureElement = document.getElementById("temperature");
+            const humidityElement = document.getElementById("humidity");
+            temperatureElement.innerText = `Temperature: ${data.temperature}°C`;
+            humidityElement.innerText = `Humidity: ${data.humidity}`;
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      refreshData();
+      setInterval(refreshData, 10000); // Refresh every 10 secs (10000 milliseconds)
+    </script>
+  </body>
 </html>
