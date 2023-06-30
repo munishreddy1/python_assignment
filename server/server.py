@@ -13,7 +13,7 @@ def generate_sensor_data():
         # For example, generating random temperature and humidity values
         import random
         temperature = random.uniform(80, 100)
-        humidity = random.uniform(40, 60)
+        humidity = random.randint(40, 60)
 
         # Return the generated data as a JSON response
         data = {

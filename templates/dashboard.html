@@ -16,11 +16,11 @@
             const temperatureElement = document.getElementById("temperature");
             const humidityElement = document.getElementById("humidity");
             temperatureElement.innerText = `Temperature: ${data.temperature}°C`;
-            humidityElement.innerText = `Humidity: ${data.humidity}`;
+            humidityElement.innerText = `Humidity: ${data.humidity}%`;
           })
           .catch((error) => console.error("Error:", error));
       }
-
+ 
       refreshData();
       setInterval(refreshData, 10000); // Refresh every 10 secs (10000 milliseconds)
     </script>
