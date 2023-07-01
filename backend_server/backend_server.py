@@ -1,6 +1,10 @@
 from flask import Flask, jsonify
 import psycopg2
 import os
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 app = Flask(__name__)
 
 # Connect to the PostgreSQL database
@@ -37,6 +41,28 @@ def fetch_sensor_data():
     lowest_temperature = min(rows, key=lambda x: x[0])[0]
     highest_humidity = max(rows, key=lambda x: x[1])[1]
     lowest_humidity = min(rows, key=lambda x: x[1])[1]
+
+    plots_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'plots')
+
+    # Delete previous plot if it exists
+    plot_path = os.path.join(plots_folder, 'plot.png')
+    if os.path.exists(plot_path):
+        os.remove(plot_path)
+
+
+    # Generate a plot
+    temperatures = [row[0] for row in rows]
+    humidities = [row[1] for row in rows]
+    plt.plot(temperatures, label='Temperature')
+    plt.plot(humidities, label='Humidity')
+    plt.xlabel('Entry')
+    plt.ylabel('Value')
+    plt.title('Sensor Data')
+    plt.legend()
+
+    # Save the plot as an image file
+    plt.savefig(plot_path)
+    plt.close()
 
     # Prepare the response
     processed_data = {

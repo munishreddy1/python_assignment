@@ -2,12 +2,18 @@
 <html>
 <head>
     <title>Sensor Data Dashboard</title>
+    <script>
+        // Refresh the page every 10 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 10000);
+    </script>
 </head>
 <body>
     <h1>Sensor Data Dashboard</h1>
     <div>
-        <p>Average Temperature: {{ data.average_temperature }}</p>
-        <p>Average Humidity: {{ data.average_humidity }}</p>
+        <p>Average Temperature: {{ data.average_temperature }}°C</p>
+        <p>Average Humidity: {{ data.average_humidity }}%</p>
         <p>Highest Humidity: {{ data.highest_humidity }}</p>
         <p>Highest temperature: {{ data.highest_temperature }}</p>
         <p>Lowest Humidity: {{ data.lowest_humidity }}</p>
@@ -15,3 +21,5 @@
     </div>
 </body>
 </html>
+
+
