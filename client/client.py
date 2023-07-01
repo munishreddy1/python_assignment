@@ -5,9 +5,11 @@ app = Flask(__name__, template_folder='../templates')
 
 backend_server_url = 'http://127.0.0.1:5001/api/processed-data'
 
+
 @app.route('/')
 def dashboard():
     return render_template('dashboard.html')
+
 
 @app.route('/api/processed-data')
 def get_processed_data():

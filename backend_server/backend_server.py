@@ -2,12 +2,12 @@ from flask import Flask, jsonify
 import requests
 
 app = Flask(__name__)
-api_server_url = 'http://127.0.0.1:5000/api/raw-data'  # server address
+server_url = 'http://127.0.0.1:5000/api/raw-data'  # server address
 
 
 def process_sensor_data():
     # Retrieve raw sensor data from the server
-    response = requests.get(api_server_url)
+    response = requests.get(server_url)
 
     if response.status_code == 200:
         raw_data = response.json()
@@ -17,7 +17,7 @@ def process_sensor_data():
         }
         return processed_data
     else:
-        print('Error: Failed to fetch raw sensor data from the API server.')
+        print('Error: Failed to fetch raw sensor data from the server.')
         return None
 
 
@@ -28,6 +28,7 @@ def fahrenheit_to_celsius(fahrenheit):
 
 
 @app.route('/api/processed-data', methods=['GET'])
+
 def get_processed_data():
     # Retrieve processed data from process_sensor_data() function
     processed_data = process_sensor_data()
@@ -41,4 +42,3 @@ def get_processed_data():
 if __name__ == '__main__':
     # Run the Flask app in development mode on localhost
     app.run(host='127.0.0.1', port=5001, debug=True)
-
