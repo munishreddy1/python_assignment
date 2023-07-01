@@ -1,20 +1,14 @@
 import time
 import psycopg2
-
-# Connection parameters for PostgreSQL
-hostname = 'host.docker.internal'
-port = 5432
-database = 'postgres'
-username = 'postgres'
-password = 'password'
+import os
 
 # Connect to the PostgreSQL database
 connection = psycopg2.connect(
-    host=hostname,
-    port=port,
-    database=database,
-    user=username,
-    password=password
+    host=os.environ.get('DB_HOST'),
+    port=os.environ.get('DB_PORT'),
+    database=os.environ.get('DB_NAME'),
+    user=os.environ.get('DB_USERNAME'),
+    password=os.environ.get('DB_PASSWORD')
 )
 
 # Create a cursor object
@@ -22,7 +16,7 @@ cursor = connection.cursor()
 
 
 def generate_sensor_data():
-    # Generating random temperature and humidity values
+    # Generate random temperature and humidity values
     import random
     temperature = random.uniform(80, 100)
     humidity = random.randint(40, 60)
@@ -45,3 +39,14 @@ if __name__ == '__main__':
             time.sleep(10)
     except KeyboardInterrupt:
         print("Sensor data generation stopped.")
+
+
+
+
+
+# Connection parameters for PostgreSQL
+# hostname = 'host.docker.internal'
+# port = 5432
+# database = 'postgres'
+# username = 'postgres'
+# password = 'password'
