@@ -1,16 +1,10 @@
 # python_assignment
 Approach-1:
-On-the-fly Generation:
-
-In this approach, the server generates the simulated sensor data periodically.
-When backend server API receives a request from the client, it sends a request to the server for the raw sensor data.
-The server generates the simulated data on-the-fly and returns it as a response to the backend server API.
-The backend server can then process the raw sensor data for example I choose to convert Fahrenheit to celsius and provide the processed data to the client.
-With this approach, the data is not stored and is generated dynamically upon request so I implemented data processing using single data.
+# On-the-fly Generation
 
 # Sensor Data Processing Dashboard
 
-This project consists of a sensor data processing dashboard that retrieves simulated sensor data, processes it, and displays the processed data in a user-friendly dashboard.
+This project consists of a sensor data processing dashboard that retrieves simulated sensor data, processes it, and displays the processed data in a dashboard.
 
 ## Features
 
@@ -23,9 +17,9 @@ This project consists of a sensor data processing dashboard that retrieves simul
 
 The project is divided into the following components:
 
-- **Client**: A Python client that interacts with the backend server to retrieve processed data and renders it in an HTML dashboard.
+- **Client**: A Python client that interacts with the backend server to retrieve processed data and renders an HTML dashboard.
 
-- **Backend Server (Python API Server)**: A Python server that acts as an interface between the client and the API server. It retrieves raw sensor data from the API server, processes it, and exposes the processed data through an API.
+- **Backend Server (Python API Server)**: A Python server that acts as an interface between the client and the API server. It retrieves raw sensor data from the server, processes it, and exposes the processed data through an API.
 
 - **API Server (Simulated Sensor Data)**: A server-based application that generates simulated sensor data and exposes the raw data through an API.
 
@@ -51,8 +45,9 @@ The dashboard will display the processed sensor data (temperature in Celsius and
 ## Dependencies
 The project relies on the following dependencies:
 
-Flask: A lightweight web framework for Python used for the API server and backend server.
-Requests: A library for making HTTP requests, used by the client to interact with the backend server.
+- Flask: A lightweight web framework for Python used for the API server and backend server.
+- Requests: A library for making HTTP requests, used by the client to interact with the backend server.
+- ApScheduler: For scheduling time intervals in the server
 These dependencies are listed in the requirements.txt file and can be installed using pip.
 
 
