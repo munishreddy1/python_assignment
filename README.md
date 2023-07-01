@@ -1,8 +1,5 @@
-# python_assignment
-Approach-1:
-# On-the-fly Generation
-
-# Sensor Data Processing Dashboard
+# Sensor Data Processing
+## Approach-1: On-the-fly Generation
 
 This project consists of a sensor data processing dashboard that retrieves simulated sensor data, processes it, and displays the processed data in a dashboard.
 
