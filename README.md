@@ -49,10 +49,34 @@ These dependencies are listed in the requirements.txt file and can be installed 
 
 
 
-Approach-2:
-Data Storage:
+## Approach-2: Used Database for storing raw sensor data
+In this approach I the server fetches sensor data from a PostgreSQL database, performs data processing, and provides access to the processed data via an API.
 
-In this approach, the server stores the generated sensor data in a database or file system.
-When the backend server receives a request from the client, it retrieves the stored data from the API server's database or file system.
-The backend server can then process the retrieved data and provide the processed data to the client.
-With this approach, the data is stored persistently, allowing the backend server to retrieve and process it whenever needed.
+## Features
+
+- Fetches the last 10 entries of sensor data from a PostgreSQL database.
+- Calculates the average temperature and average humidity of the fetched data.
+- Provides access to the processed data through a RESTful API.
+
+## Requirements
+
+- Python 3.x
+- PostgreSQL database(Preferably docker container)
+- pgadmin provides GUI for postgreSQL.
+- Required Python packages (specified in `requirements.txt`)
+
+## Installation
+
+1. Dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+
+2. Set up the PostgreSQL database and provide the connection details as environment variables:
+
+- DB_HOST: Hostname or IP address of the PostgreSQL server.
+- DB_PORT: Port number on which the PostgreSQL server is running.
+- DB_NAME: Name of the database.
+- DB_USERNAME: Username to access the database.
+- DB_PASSWORD: Password for the database user.
+
