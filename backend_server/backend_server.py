@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-# Connect to the PostgreSQL database
+# Connect to the PostgreSQL database 
+# Created global system environment variables for security and reusability
 connection = psycopg2.connect(
     host=os.environ.get('DB_HOST'),
     port=os.environ.get('DB_PORT'),
