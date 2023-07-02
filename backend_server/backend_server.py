@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_file
 import psycopg2
 import os
 import matplotlib
@@ -82,6 +82,12 @@ def fetch_sensor_data():
 def get_processed_data():
     data = fetch_sensor_data()
     return jsonify(data)
+
+# Define the route for serving the plot image
+@app.route('/plot')
+def get_plot():
+    plot_path = os.path.join('plots', 'plot.png')
+    return send_file(plot_path, mimetype='image/png')
 
 
 if __name__ == '__main__':

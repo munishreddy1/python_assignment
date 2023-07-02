@@ -26,3 +26,36 @@ psycopg2
     </div>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    <p id="temperature">Temperature: N/A</p>
+    <p id="humidity">Humidity: N/A</p>
+    <img id="plot" src="/plots/plot.png" alt="Plot" />
+
+    <script>
+      function refreshData() {
+        fetch("/api/processed-data")
+          .then((response) => response.json())
+          .then((data) => {
+            const temperatureElement = document.getElementById("temperature");
+            const humidityElement = document.getElementById("humidity");
+            const plotElement = document.getElementById("plot");
+            temperatureElement.innerText = `Temperature: ${data.average_temperature}°C`;
+            humidityElement.innerText = `Humidity: ${data.average_humidity}%`;
+            plotElement.src = `/plots/plot.png?timestamp=${new Date().getTime()}`;
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      refreshData();
+      setInterval(refreshData, 10000); // Refresh every 10 secs (10000 milliseconds)
+    </script>
+  </body>
+</html>
