@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import requests
 import os
 
-app = Flask(__name__, template_folder='../templates', static_folder='../plots')
+app = Flask(__name__, template_folder='../templates', static_folder='../plots') # Update new folders created at root level
 
 # Define the backend server URL
 backend_url = 'http://localhost:5000/api/processed-data'

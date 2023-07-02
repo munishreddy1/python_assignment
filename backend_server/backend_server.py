@@ -41,7 +41,8 @@ def fetch_sensor_data():
     lowest_temperature = min(rows, key=lambda x: x[0])[0]
     highest_humidity = max(rows, key=lambda x: x[1])[1]
     lowest_humidity = min(rows, key=lambda x: x[1])[1]
-
+    
+    # Generate a path for the plots folder
     plots_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'plots')
 
     # Delete previous plot if it exists
@@ -83,7 +84,7 @@ def get_processed_data():
     data = fetch_sensor_data()
     return jsonify(data)
 
-# Define the route for serving the plot image
+# Define the static route for serving the plot image
 @app.route('/plot')
 def get_plot():
     plot_path = os.path.join('plots', 'plot.png')

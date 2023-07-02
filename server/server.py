@@ -33,7 +33,7 @@ if __name__ == '__main__':
     print("Press Ctrl+C to stop.")
 
     try:
-        # Generate and store simulated sensor data every 60 seconds
+        # Generate and store simulated sensor data every 10 seconds
         while True:
             generate_sensor_data()
             time.sleep(10)
