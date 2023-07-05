@@ -1,0 +1,33 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./server
+    depends_on:
+      - db
+
+  backend:
+    build:
+      context: ./backend_server
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "5001:5001"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=your_db_name
+      - POSTGRES_USER=your_db_username
+      - POSTGRES_PASSWORD=your_db_password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
