@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
+import time
 
 app = Flask(__name__)
 
@@ -8,8 +9,8 @@ scheduler = BackgroundScheduler()
 
 
 def generate_sensor_data():
-    with app.app_context():
-        # generating random temperature and humidity values
+    with app.app_context():  # The code block within it will have access to the Flask application context
+        # generate random temperature and humidity values
         import random
         temperature = random.randint(80, 100)
         humidity = random.randint(40, 60)
@@ -18,7 +19,7 @@ def generate_sensor_data():
         data = {
             'temperature': temperature,
             'humidity': humidity
-        }
+        }        
         return jsonify(data)
 
 
@@ -30,7 +31,7 @@ def get_raw_data():
 
 if __name__ == '__main__':
     # Add the generate_sensor_data function to the scheduler to be called every 10 seconds
-    scheduler.add_job(generate_sensor_data,  'interval', seconds=10)
+    scheduler.add_job(generate_sensor_data, 'interval', seconds=10)
 
     # Start the scheduler
     scheduler.start()
